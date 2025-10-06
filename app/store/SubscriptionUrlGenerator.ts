@@ -6,7 +6,7 @@ const SubscriptionUrlGenerator = (
   successUrl: string,
   userInfo: UserInfo
 ): string => {
-  const baseURL = 'https://sorapix.ai/pay/app_image_gen/' + interval;
+  const baseURL = 'https://yolox.fun/pay/app_image_gen/' + interval;
 
   const metadata = useMetadata();
 
