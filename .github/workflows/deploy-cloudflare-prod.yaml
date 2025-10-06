@@ -1,0 +1,23 @@
+name: Deploy to Cloudflare Prod
+
+on:
+  push:
+    branches:
+      - main # Or the default branch you are using
+
+jobs:
+  deploy-main:
+    env:
+      CLOUDFLARE_API_TOKEN: 3IV2lGomzgGto2Ltz41Cz_DNj8tz0JCm1F63ZNLw
+
+    name: Deploy to Cloudflare Prod
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: build and deploy
+        run: |
+          npm install
+          npm run deploy
