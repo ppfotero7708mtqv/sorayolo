@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+  </head>
+  <body>
+    <iframe
+      id="checkoutIframe"
+      width="100%"
+      height="100%"
+      frameborder="0"
+      allowfullscreen
+      onload="autoIframeHeight()"
+      src="#"
+    ></iframe>
+    <script>
+      const frame = document.getElementById('checkoutIframe');
+
+      window.addEventListener(
+        'message',
+        function (ev) {
+          var msg = ev.data;
+          messageHandle(msg);
+        },
+        false
+      );
+
+      function messageHandle(msg) {
+        if (msg.action == 'SUCCESS') {
+          window.location.href = 'https://sorapix.ai/success.html'; //成功页面
+        } else if (msg.action == '3d-begin') {
+          window.location.href = msg.url;
+        }
+      }
+
+      function getUrlParams() {
+        const params = {};
+        const queryString = window.location.search;
+        if (queryString) {
+          const urlParams = new URLSearchParams(queryString);
+          for (let [key, value] of urlParams) {
+            params[key] = decodeURIComponent(value);
+          }
+        }
+        return params;
+      }
+
+      function displayCurrentParams() {
+        const params = getUrlParams();
+        //console.log(params);
+        if (params && params['url']) {
+          frame.src = params['url'];
+        }
+      }
+
+      function autoIframeHeight() {
+        var iframeDoc = null;
+        if (iframe.contentDocument) {
+          iframeDoc = iframe.contentDocument; // For NS6
+        } else if (iframe.contentWindow) {
+          try {
+            // iframeDoc = iframe.contentWindow.document; // For IE5.5 and IE6
+          } catch (e) {
+            console.log('error', e);
+          }
+        }
+        if (iframeDoc) {
+          var body = iframeDoc.body;
+          var html = iframeDoc.documentElement;
+          var height;
+
+          if (body) {
+            height = Math.max(body.scrollHeight, body.offsetHeight);
+            if (html) {
+              height = Math.max(height, html.scrollHeight, html.offsetHeight);
+            }
+            iframe.height = height;
+          }
+        }
+      }
+
+      function resizeIframe() {
+        frame.style.height = window.innerHeight + 'px';
+      }
+
+      window.addEventListener('resize', resizeIframe);
+      resizeIframe();
+
+      document.addEventListener('DOMContentLoaded', function () {
+        displayCurrentParams();
+      });
+    </script>
+  </body>
+</html>
