@@ -46,8 +46,6 @@ async function handler(req: Request) {
   }
 }
 
-export const runtime = 'edge';
-
 // Export the handler for all common HTTP methods.
 export {
   handler as DELETE,

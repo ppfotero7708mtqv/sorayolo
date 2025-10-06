@@ -1,7 +1,5 @@
 import { company, companyAddress, getHost } from '@/app/layout/ServerHost';
 
-export const runtime = 'edge';
-
 export default async function AboutUs() {
   const host = await getHost();
   const name = host.includes('sorapix') ? 'SoraPix' : 'iFantasy';

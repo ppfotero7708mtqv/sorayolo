@@ -1,7 +1,5 @@
 import { company, companyAddress, getHost } from '@/app/layout/ServerHost';
 
-export const runtime = 'edge';
-
 export default async function PrivacyPolicy() {
   const host = await getHost();
   const domain = host.includes('sorapix') ? 'sorapix.ai' : 'ifantasy.ai';

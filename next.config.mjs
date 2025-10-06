@@ -1,11 +1,8 @@
-import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev';
-
-if (process.env.NODE_ENV === 'development') {
-  await setupDevPlatform();
-}
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
   async rewrites() {
     return [
       {
@@ -55,4 +52,9 @@ const nextConfig = {
   trailingSlash: true,
 };
 
+// export default nextConfig;
+
 export default nextConfig;
+
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
+initOpenNextCloudflareForDev();

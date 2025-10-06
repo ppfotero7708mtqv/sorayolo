@@ -5,7 +5,7 @@ import Faqs from './Faqs';
 import Partner from './Partner';
 import SubscribePart from './SubscribePart';
 import IFantasyPart from './iFantasyPart';
-export const runtime = 'edge';
+
 const HomePage = async () => {
   const { plans, tokens } = await serverGetPlans();
   return (

@@ -4,7 +4,7 @@ import {
   companyCountry,
   getHost,
 } from '@/app/layout/ServerHost';
-export const runtime = 'edge';
+
 export default async function TermOfService() {
   const host = await getHost();
   const domain = host.includes('sorapix') ? 'sorapix.ai' : 'ifantasy.ai';

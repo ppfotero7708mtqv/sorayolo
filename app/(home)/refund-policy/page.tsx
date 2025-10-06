@@ -1,6 +1,6 @@
 import { company, companyAddress } from '@/app/layout/ServerHost';
 import { cookies } from 'next/headers';
-export const runtime = 'edge';
+
 export default async function TermOfService() {
   return (
     <>
